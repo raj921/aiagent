@@ -1,16 +1,20 @@
 Vercel (monorepo: Next.js lives in my-app/)
 
+REQUIRED for a working site (fixes NOT_FOUND / wrong static deploy):
+
 1. Vercel → Project → Settings → General → Root Directory → set to: my-app
    Save.
 
-2. Same area → Build & Development:
-   - Framework Preset: Next.js (auto is fine)
-   - Build Command: leave default (next build) OR empty
-   - Output Directory: leave EMPTY (remove "public" if it was set)
-   - Install Command: leave default (npm install)
+2. Build & Development:
+   - Framework Preset: Next.js
+   - Build Command: leave default (next build) when Root Directory is my-app
+   - Output Directory: MUST be EMPTY — remove "public" if it is set (this is what triggers the missing-public error on monorepo root builds)
+   - Install Command: default
 
-3. Redeploy the latest main branch.
+3. After step 1–2, you can rely on the default my-app build only. Redeploy main.
 
-4. Open the Production URL (Project → Domains). The home page is "/".
+---
 
-If Root Directory stays the repo root, Vercel may not deploy the Next app correctly and you can see NOT_FOUND or empty sites.
+If you cannot change settings yet: the repo root build copies my-app/public → public after next build, and vercel.json sets "framework": "nextjs" so the deploy step treats the project as Next.js. You should still set Root Directory to my-app when possible.
+
+Open the Production URL from Project → Domains (path "/").
