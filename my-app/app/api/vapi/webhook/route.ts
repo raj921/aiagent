@@ -2,8 +2,10 @@ import { NextResponse } from "next/server";
 
 /**
  * Receives events FROM Vapi (tool calls, end-of-call report, etc.).
- * Set in Vapi Dashboard → Assistant → Server URL:
- * `${PUBLIC_APP_URL}/api/vapi/webhook`
+ * Set in Vapi Dashboard → Assistant → Server URL (HTTPS, publicly reachable):
+ *   Production: https://<your-vercel-domain>/api/vapi/webhook
+ *   Local dev:  https://<ngrok-subdomain>.ngrok-free.app/api/vapi/webhook
+ * (nginx on localhost is optional dev-only; Vapi never calls nginx directly.)
  */
 
 export async function POST(request: Request) {
