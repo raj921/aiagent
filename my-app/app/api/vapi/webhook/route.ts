@@ -10,6 +10,19 @@ import { NextResponse } from "next/server";
 
 export const maxDuration = 10;
 
+/** Browser checks use GET — Vapi still must POST JSON payloads here. */
+export function GET() {
+  return NextResponse.json(
+    {
+      ok: true,
+      path: "/api/vapi/webhook",
+      detail:
+        "Vapi sends POST requests here. A GET in the browser only checks that the route exists.",
+    },
+    { status: 200 },
+  );
+}
+
 export async function POST(request: Request) {
   try {
     const payload = (await request.json()) as {
