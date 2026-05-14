@@ -8,6 +8,8 @@ import { NextResponse } from "next/server";
  * (nginx on localhost is optional dev-only; Vapi never calls nginx directly.)
  */
 
+export const maxDuration = 10;
+
 export async function POST(request: Request) {
   try {
     const payload = (await request.json()) as {
