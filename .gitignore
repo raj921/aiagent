@@ -2,3 +2,5 @@
 *.log
 node_modules/
 .cursor/
+# Local artifact if you ever run the old root public copy step
+/public/
